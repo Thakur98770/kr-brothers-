@@ -39,6 +39,7 @@ export function ServiceAreasPage() {
           serviceType: 'Crane rental and lifting contractor',
           provider: {
             '@type': 'LocalBusiness',
+            '@id': `${ORIGIN}/#business`,
             name: brand.name,
             telephone: contacts.primaryPhoneRaw,
             email: contacts.email,
@@ -49,6 +50,21 @@ export function ServiceAreasPage() {
               addressRegion: location.state,
               postalCode: location.pincode,
               addressCountry: location.countryCode,
+            },
+            location: {
+              '@type': 'Place',
+              name: 'KR Brothers Office',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: location.office.addressLine1,
+                addressRegion: location.state,
+                addressCountry: location.countryCode,
+              },
+              geo: {
+                '@type': 'GeoCoordinates',
+                latitude: location.office.latitude,
+                longitude: location.office.longitude,
+              },
             },
           },
           areaServed: operations.serviceRegions.map((area) => ({
@@ -126,9 +142,19 @@ export function ServiceAreasPage() {
                 <p className="flex items-start gap-3 text-[15px] leading-relaxed text-navy-700">
                   <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-amber-safety" aria-hidden="true" />
                   <span>
+                    <strong className="block text-navy-900">Workshop &amp; operating yard</strong>
                     {location.addressLine1}
                     <br />
                     {location.addressLine2}
+                  </span>
+                </p>
+                <p className="mt-4 flex items-start gap-3 text-[15px] leading-relaxed text-navy-700">
+                  <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-amber-safety" aria-hidden="true" />
+                  <span>
+                    <strong className="block text-navy-900">Office</strong>
+                    {location.office.addressLine1}
+                    <br />
+                    {location.office.addressLine2}
                   </span>
                 </p>
                 <p className="mt-4 flex items-start gap-3 text-[15px] leading-relaxed text-navy-700">
@@ -142,13 +168,22 @@ export function ServiceAreasPage() {
               </p>
 
               <a
-                href={location.directionsLink}
+                href={location.office.directionsLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-dark mt-6 inline-flex"
               >
                 <Navigation className="h-4 w-4" aria-hidden="true" />
-                Open in Maps
+                Directions to Office
+              </a>
+              <a
+                href={location.directionsLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline mt-3 inline-flex sm:ml-2"
+              >
+                <Navigation className="h-4 w-4" aria-hidden="true" />
+                Directions to Yard
               </a>
             </Reveal>
 

@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import SITE_ORIGIN from '../config/siteConfig'
 
 /**
  * Keeps a single set of document-level meta tags in sync with the current
@@ -28,8 +29,6 @@ function setLink(rel, href) {
   el.setAttribute('href', href)
 }
 
-const SITE_ORIGIN = 'https://www.krbrothers.com'
-
 function absolute(url) {
   if (!url) return undefined
   return url.startsWith('http') ? url : `${SITE_ORIGIN}${url.startsWith('/') ? '' : '/'}${url}`
@@ -50,7 +49,7 @@ export function useDocumentMeta({
   description,
   keywords,
   canonical,
-  image,
+  image = '/og-image.png',
   jsonLd,
   robots = 'index, follow',
 } = {}) {
@@ -61,9 +60,11 @@ export function useDocumentMeta({
 
   useEffect(() => {
     if (title) document.title = title
+    setMeta('name', 'twitter:card', 'summary_large_image')
+    setMeta('name', 'twitter:title', title)
+    setMeta('property', 'og:locale', 'en_IN')
     if (description) {
       setMeta('name', 'description', description)
-      setMeta('name', 'twitter:title', title)
       setMeta('name', 'twitter:description', description)
       setMeta('property', 'og:title', title)
       setMeta('property', 'og:description', description)
@@ -80,9 +81,12 @@ export function useDocumentMeta({
     const img = absolute(image)
     if (img) {
       setMeta('property', 'og:image', img)
+      setMeta('property', 'og:image:type', 'image/png')
+      setMeta('property', 'og:image:width', '1200')
+      setMeta('property', 'og:image:height', '630')
       setMeta('name', 'twitter:image', img)
-      setMeta('property', 'og:image:alt', title)
-      setMeta('name', 'twitter:image:alt', title)
+      setMeta('property', 'og:image:alt', `${title} — KR Brothers`)
+      setMeta('name', 'twitter:image:alt', `${title} — KR Brothers`)
     }
 
     if (jsonLd) {

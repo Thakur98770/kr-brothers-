@@ -110,42 +110,17 @@
   }
 
   /* ---- Inline action links ----
-     The "Quick Summary" / "Full details" family. This shape was previously
-     copy-pasted per call site with drifting colours, which is what produced
-     several near-identical button styles. */
+     Shared treatment for the quick-summary and full-details actions. */
   .link-action {
-    @apply inline-flex min-h-[2.5rem] items-center gap-1.5 border-b-2 py-2 text-xs font-bold
-      uppercase tracking-wider transition-colors;
-  }
-
-  .link-action-primary {
-    @apply link-action border-amber-safety text-navy-900 hover:text-amber-deepText;
-  }
-
-  .link-action-quiet {
-    @apply link-action border-transparent text-navy-600 hover:border-navy-600 hover:text-navy-900;
+    @apply inline-flex min-h-[2.5rem] items-center gap-1.5 border-b-2 border-amber-safety py-2 text-xs font-bold
+      uppercase tracking-wider text-navy-900 transition-colors hover:text-amber-deepText;
   }
 
   /* ---- Icon buttons ----
-     Single source for every icon-only control: carousel arrows, lightbox nav,
-     drawer toggle, gallery badge close and back-to-top. Surface and radius are
-     the only real variants, so size stays a utility on top of the base. */
+     One high-contrast treatment across navigation, gallery and floating controls. */
   .icon-btn {
-    @apply grid h-11 w-11 shrink-0 place-items-center rounded-lg border transition-colors;
-  }
-
-  .icon-btn-onDark {
-    @apply icon-btn border-white/20 text-white hover:border-amber-safety hover:bg-amber-safety hover:text-navy-900;
-  }
-
-  .icon-btn-onMedia {
-    @apply icon-btn rounded-full border-white/25 bg-navy-950/70 text-white
-      hover:border-amber-safety hover:bg-amber-safety hover:text-navy-900;
-  }
-
-  .icon-btn-onLight {
-    @apply icon-btn rounded-full border-slate-300 bg-white text-navy-900 shadow-card
-      hover:border-navy-900 hover:bg-navy-900 hover:text-white;
+    @apply grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-white/20 bg-navy-950/70 text-white
+      transition-colors hover:border-amber-safety hover:bg-amber-safety hover:text-navy-900;
   }
 
   /* ---- Surfaces ---- */

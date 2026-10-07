@@ -27,7 +27,7 @@ function ServiceCard({ service, index, onOpen }) {
             <span className="grid h-12 w-12 place-items-center rounded-xl bg-navy-900 text-amber-safety transition-all duration-300 group-hover:bg-amber-safety group-hover:text-navy-900">
               <Icon className="h-6 w-6" aria-hidden="true" />
             </span>
-            <span className="rounded-md bg-slate-100 px-2 py-1 font-mono text-xs font-bold uppercase tracking-wider text-navy-600">
+            <span className="rounded-md bg-slate-100 px-2 py-1 font-mono text-xs font-bold normal-case tracking-normal text-navy-600">
               {service.capacity}
             </span>
           </div>
@@ -46,7 +46,7 @@ function ServiceCard({ service, index, onOpen }) {
             <button
               type="button"
               onClick={() => onOpen(service.id)}
-              className="link-action-primary"
+              className="link-action"
               aria-label={`Quick summary of ${service.title}`}
             >
               Quick Summary
@@ -58,7 +58,7 @@ function ServiceCard({ service, index, onOpen }) {
 
             <Link
               to={`/services/${service.id}`}
-              className="link-action-quiet"
+              className="link-action"
             >
               Full details
               <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />

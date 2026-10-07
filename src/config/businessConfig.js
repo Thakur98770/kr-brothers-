@@ -45,6 +45,18 @@ export const BUSINESS_CONFIG = {
     directionsLink:
       'https://www.google.com/maps/dir/?api=1&destination=Mukerian%2C+Hoshiarpur%2C+Punjab%2C+India',
     geoLabel: 'Khizarpur (Hajipur) — Distt. Hoshiarpur',
+    office: {
+      addressLine1: 'Parelian',
+      addressLine2: 'Punjab, India · Plus Code XP2G+343',
+      latitude: 31.9501457,
+      longitude: 75.7253036,
+      mapsEmbedSrc:
+        'https://www.google.com/maps?q=31.9501457%2C75.7253036&z=17&output=embed',
+      mapsLink:
+        'https://www.google.com/maps/search/?api=1&query=31.9501457%2C75.7253036',
+      directionsLink:
+        'https://www.google.com/maps/dir/?api=1&destination=31.9501457%2C75.7253036',
+    },
   },
 
   // phones
@@ -60,9 +72,9 @@ export const BUSINESS_CONFIG = {
     whatsappNumberCompact: '919779255878',
     whatsappMessage:
       'Hello KR Brothers, I would like to enquire about your services.',
-    email: 'contact@krbrothers.com',
-    emailDisplay: 'contact@krbrothers.com',
-    mailtoLink: 'mailto:contact@krbrothers.com',
+    email: 'krbrothers82@gmail.com',
+    emailDisplay: 'krbrothers82@gmail.com',
+    mailtoLink: 'mailto:krbrothers82@gmail.com',
     emergencyNote: '24/7 breakdown & emergency lifting support',
   },
 
@@ -92,9 +104,9 @@ get whatsappService() {
    * Only the full https:// URL goes here — no trailing text needed.
    * -------------------------------------------------------------------- */
   social: {
-    facebook: '',
-    instagram: '',
-    youtube: '',
+    facebook: 'https://www.facebook.com/share/18aBi4PuA3/',
+    instagram: 'https://www.instagram.com/kr.brothers_khizarpur',
+    youtube: 'https://youtube.com/@kr.brothers_khizarpur',
   },
 
   /* social helper
@@ -835,10 +847,10 @@ get whatsappService() {
 
   // map
   map: {
-    title: 'Find Us — Vill. Khizarpur (Hajipur)',
-    subtitle: 'Teh. Mukerian, Distt. Hoshiarpur, Punjab',
+    title: 'KR Brothers Office — Parelian',
+    subtitle: 'Parelian, Punjab, India · Plus Code XP2G+343',
     note:
-      'Our base sits close to the NH-44 / Mukerian corridor, giving us fast access to Hoshiarpur, Pathankot and the surrounding industrial belts.',
+      'The map marks our office in Parelian. Our crane workshop and operating yard remain at Khizarpur (Hajipur), Mukerian.',
   },
 
   /* equipment / fleet

@@ -361,7 +361,7 @@ export function Contact({ preselectService, onPreselectHandled }) {
               <div className="relative mt-6 rounded-xl border border-white/10 bg-navy-950/60 p-4">
                 <p className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-amber-safety">
                   <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-                  Workshop Address
+                  Operating Yard
                 </p>
                 <address className="mt-2 not-italic text-sm leading-relaxed text-navy-200">
                   {location.addressLine1}
@@ -372,9 +372,30 @@ export function Contact({ preselectService, onPreselectHandled }) {
                   href={location.directionsLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="tap-sm mt-3 gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-safety underline-offset-4 hover:underline"
+                  className="tap-sm mt-3 gap-1.5 text-xs font-bold normal-case tracking-normal text-amber-safety underline-offset-4 hover:underline"
                 >
                   Get directions
+                  <ArrowRight className="h-3 w-3" aria-hidden="true" />
+                </a>
+              </div>
+
+              <div className="relative mt-3 rounded-xl border border-white/10 bg-navy-950/60 p-4">
+                <p className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-amber-safety">
+                  <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
+                  Office Address
+                </p>
+                <address className="mt-2 not-italic text-sm leading-relaxed text-navy-200">
+                  {location.office.addressLine1}
+                  <br />
+                  {location.office.addressLine2}
+                </address>
+                <a
+                  href={location.office.directionsLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="tap-sm mt-3 gap-1.5 text-xs font-bold normal-case tracking-normal text-amber-safety underline-offset-4 hover:underline"
+                >
+                  Office directions
                   <ArrowRight className="h-3 w-3" aria-hidden="true" />
                 </a>
               </div>
@@ -384,7 +405,7 @@ export function Contact({ preselectService, onPreselectHandled }) {
                 {operations.hours} &nbsp;•&nbsp; {operations.responseTime}
               </p>
 
-              {/* Renders nothing until social URLs are filled in the config */}
+              {/* Shows the social profiles configured for the business. */}
               <SocialLinks heading="Follow Us" size="sm" className="mt-5" />
             </div>
           </Reveal>
@@ -673,7 +694,7 @@ export function Contact({ preselectService, onPreselectHandled }) {
                 <p className="mt-0.5 text-xs text-navy-500">{map.subtitle}</p>
               </div>
               <a
-                href={location.mapsLink}
+                href={location.office.mapsLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-outline btn-sm"
@@ -685,7 +706,7 @@ export function Contact({ preselectService, onPreselectHandled }) {
 
             <div className="relative h-[18rem] w-full sm:h-[24rem] lg:h-[28rem]">
               <iframe
-                src={location.mapsEmbedSrc}
+                src={location.office.mapsEmbedSrc}
                 title={`Google Map — ${map.title}, ${map.subtitle}`}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

@@ -60,7 +60,7 @@ export function FloatingActions() {
         type="button"
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         aria-label={LABELS.top}
-        className={`icon-btn-onLight transition-all duration-300 ${
+        className={`icon-btn rounded-full shadow-card transition-all duration-300 ${
           showTop
             ? 'pointer-events-auto translate-y-0 opacity-100'
             : 'pointer-events-none translate-y-3 opacity-0'

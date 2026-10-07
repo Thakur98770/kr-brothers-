@@ -33,12 +33,19 @@
       content="Crane rental, all lifting work, material handling and machinery shifting in Mukerian, Hajipur, Hoshiarpur & Pathankot. Call +91 78890 87547."
     />
     <meta property="og:locale" content="en_IN" />
+    <meta property="og:image" content="https://www.krbrothers.com/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="KR Brothers crane rental and lifting services in Punjab" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="KR Brothers | Crane Rental & Lifting Services Hoshiarpur" />
     <meta
       name="twitter:description"
       content="Crane rental, all lifting work, material handling and machinery shifting in Mukerian, Hajipur, Hoshiarpur & Pathankot. Call +91 78890 87547."
     />
+    <meta name="twitter:image" content="https://www.krbrothers.com/og-image.png" />
+    <meta name="twitter:image:alt" content="KR Brothers crane rental and lifting services in Punjab" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -54,48 +61,87 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "KR Brothers",
-        "url": "https://www.krbrothers.com/",
-        "description": "Crane rental, all types of lifting work, material handling and heavy industrial construction support.",
-        "slogan": "Safe Lift Strong Support — Your Trust Our Service",
-        "telephone": "+91-78890-87547",
-        "email": "contact@krbrothers.com",
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 32.0456,
-          "longitude": 75.6291
-        },
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Vill. Khizarpur (Hajipur), Teh. Mukerian",
-          "addressLocality": "Hajipur",
-          "addressRegion": "Punjab",
-          "postalCode": "146024",
-          "addressCountry": "IN"
-        },
-        "areaServed": [
-          "Mukerian",
-          "Hajipur",
-          "Hoshiarpur",
-          "Pathankot",
-          "Punjab",
-          "Himachal Pradesh"
-        ],
-        "openingHoursSpecification": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday"
-          ],
-          "opens": "00:00",
-          "closes": "23:59"
-        }
+        "@graph": [
+          {
+            "@type": "LocalBusiness",
+            "@id": "https://www.krbrothers.com/#business",
+            "name": "KR Brothers",
+            "url": "https://www.krbrothers.com/",
+            "image": "https://www.krbrothers.com/og-image.png",
+            "logo": "https://www.krbrothers.com/favicon.svg",
+            "description": "Crane rental, all types of lifting work, material handling and heavy industrial construction support.",
+            "slogan": "Safe Lift Strong Support — Your Trust Our Service",
+            "telephone": "+91-78890-87547",
+            "email": "krbrothers82@gmail.com",
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 32.0456,
+              "longitude": 75.6291
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Vill. Khizarpur (Hajipur), Teh. Mukerian",
+              "addressLocality": "Hajipur",
+              "addressRegion": "Punjab",
+              "postalCode": "146024",
+              "addressCountry": "IN"
+            },
+            "location": {
+              "@type": "Place",
+              "name": "KR Brothers Office",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Parelian",
+                "addressRegion": "Punjab",
+                "addressCountry": "IN"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 31.9501457,
+                "longitude": 75.7253036
+              }
+            },
+            "areaServed": [
+              "Mukerian",
+              "Hajipur",
+              "Hoshiarpur",
+              "Pathankot",
+              "Punjab",
+              "Himachal Pradesh"
+            ],
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+              ],
+              "opens": "00:00",
+              "closes": "23:59"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.krbrothers.com/#website",
+            "url": "https://www.krbrothers.com/",
+            "name": "KR Brothers",
+            "publisher": { "@id": "https://www.krbrothers.com/#business" },
+            "inLanguage": "en-IN"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.krbrothers.com/#webpage",
+            "url": "https://www.krbrothers.com/",
+            "name": "KR Brothers | Crane Rental & Lifting Services Hoshiarpur",
+            "isPartOf": { "@id": "https://www.krbrothers.com/#website" },
+            "about": { "@id": "https://www.krbrothers.com/#business" },
+            "inLanguage": "en-IN"
+          }
+        ]
       }
     </script>
   </head>

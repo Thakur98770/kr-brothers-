@@ -166,7 +166,7 @@ export function Testimonials() {
             type="button"
             onClick={goPrev}
             aria-label="Previous testimonials"
-            className="icon-btn-onDark"
+            className="icon-btn"
           >
             <ChevronLeft className="h-5 w-5" aria-hidden="true" />
           </button>
@@ -197,7 +197,7 @@ export function Testimonials() {
             type="button"
             onClick={goNext}
             aria-label="Next testimonials"
-            className="icon-btn-onDark"
+            className="icon-btn"
           >
             <ChevronRight className="h-5 w-5" aria-hidden="true" />
           </button>

@@ -41,7 +41,7 @@ export function About() {
         {/* Heading sits outside the two-column grid so it centres across the
             full page width, not just over the right-hand column. */}
         <SectionHeading
-          eyebrow="About KR Brothers"
+          eyebrow="Our story"
           title="Local Roots,"
           titleAccent="Industrial Strength"
           headingId="about-heading"

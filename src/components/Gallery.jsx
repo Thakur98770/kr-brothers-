@@ -67,7 +67,7 @@ function GalleryLightbox({ items, index, isOpen, onClose, onPrev, onNext }) {
               type="button"
               onClick={onPrev}
               aria-label="Previous image"
-              className="icon-btn-onMedia absolute left-3 top-1/2 h-12 w-12 -translate-y-1/2"
+              className="icon-btn absolute left-3 top-1/2 h-12 w-12 -translate-y-1/2 rounded-full"
             >
               <ChevronLeft className="h-6 w-6" aria-hidden="true" />
             </button>
@@ -75,7 +75,7 @@ function GalleryLightbox({ items, index, isOpen, onClose, onPrev, onNext }) {
               type="button"
               onClick={onNext}
               aria-label="Next image"
-              className="icon-btn-onMedia absolute right-3 top-1/2 h-12 w-12 -translate-y-1/2"
+              className="icon-btn absolute right-3 top-1/2 h-12 w-12 -translate-y-1/2 rounded-full"
             >
               <ChevronRight className="h-6 w-6" aria-hidden="true" />
             </button>

@@ -52,6 +52,7 @@ export function ContactPage() {
           url: `${ORIGIN}${PATH}`,
           mainEntity: {
             '@type': 'LocalBusiness',
+            '@id': `${ORIGIN}/#business`,
             name: brand.name,
             telephone: contacts.primaryPhoneRaw,
             email: contacts.email,
@@ -62,6 +63,21 @@ export function ContactPage() {
               addressRegion: location.state,
               postalCode: location.pincode,
               addressCountry: location.countryCode,
+            },
+            location: {
+              '@type': 'Place',
+              name: 'KR Brothers Office',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: location.office.addressLine1,
+                addressRegion: location.state,
+                addressCountry: location.countryCode,
+              },
+              geo: {
+                '@type': 'GeoCoordinates',
+                latitude: location.office.latitude,
+                longitude: location.office.longitude,
+              },
             },
             contactPoint: [
               {
@@ -273,18 +289,42 @@ export function ContactPage() {
 
           <Reveal variant="slide-left" delay={80}>
             <h2 className="section-title text-navy-900">
-              Find <span className="text-amber-deepText">the yard</span>
+              Find <span className="text-amber-deepText">our locations</span>
             </h2>
-            <address className="mt-6 not-italic">
-              <p className="flex items-start gap-3 text-[15px] leading-relaxed text-navy-700">
-                <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-amber-safety" aria-hidden="true" />
-                <span>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <address className="rounded-xl border border-slate-200 bg-white p-5 not-italic">
+                <h3 className="font-display text-base font-bold text-navy-900">Office — Parelian</h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-navy-700">
+                  {location.office.addressLine1}
+                  <br />
+                  {location.office.addressLine2}
+                </p>
+                <a
+                  href={location.office.mapsLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="tap-sm mt-3 inline-flex text-sm font-semibold text-navy-900 underline-offset-4 hover:text-amber-deepText hover:underline"
+                >
+                  View office on Google Maps
+                </a>
+              </address>
+              <address className="rounded-xl border border-slate-200 bg-white p-5 not-italic">
+                <h3 className="font-display text-base font-bold text-navy-900">Workshop &amp; operating yard</h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-navy-700">
                   {location.addressLine1}
                   <br />
                   {location.addressLine2}
-                </span>
-              </p>
-            </address>
+                </p>
+                <a
+                  href={location.mapsLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="tap-sm mt-3 inline-flex text-sm font-semibold text-navy-900 underline-offset-4 hover:text-amber-deepText hover:underline"
+                >
+                  View operating yard on Google Maps
+                </a>
+              </address>
+            </div>
 
             <p className="mt-5 text-[15px] leading-relaxed text-navy-700">
               {BUSINESS_CONFIG.map.note}
@@ -292,13 +332,22 @@ export function ContactPage() {
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <a
-                href={location.directionsLink}
+                href={location.office.directionsLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-dark inline-flex"
               >
                 <Navigation className="h-4 w-4" aria-hidden="true" />
-                Get Directions
+                Directions to Office
+              </a>
+              <a
+                href={location.directionsLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline inline-flex"
+              >
+                <Navigation className="h-4 w-4" aria-hidden="true" />
+                Directions to Yard
               </a>
               <Link to="/service-areas" className="btn-outline inline-flex">
                 Check your area

@@ -293,7 +293,7 @@ export function Navbar({ activeSection, onRequestQuote }) {
               ref={toggleRef}
               type="button"
               onClick={() => setIsDrawerOpen(true)}
-              className="icon-btn-onDark h-10 w-10 lg:hidden"
+              className="icon-btn h-10 w-10 lg:hidden"
               aria-expanded={isDrawerOpen}
               aria-controls={isDrawerOpen ? 'mobile-nav-drawer' : undefined}
               aria-label="Open navigation menu"
@@ -336,7 +336,7 @@ export function Navbar({ activeSection, onRequestQuote }) {
                   setIsDrawerOpen(false)
                   toggleRef.current?.focus()
                 }}
-                className="icon-btn-onDark h-10 w-10"
+                className="icon-btn h-10 w-10"
                 aria-label="Close navigation menu"
               >
                 <X className="h-5 w-5" aria-hidden="true" />

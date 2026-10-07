@@ -57,6 +57,7 @@ function ServiceDetail({ service }) {
           serviceType: title,
           provider: {
             '@type': 'LocalBusiness',
+            '@id': `${ORIGIN}/#business`,
             name: brand.name,
             telephone: contacts.primaryPhoneRaw,
             email: contacts.email,
@@ -67,6 +68,21 @@ function ServiceDetail({ service }) {
               addressRegion: location.state,
               postalCode: location.pincode,
               addressCountry: location.countryCode,
+            },
+            location: {
+              '@type': 'Place',
+              name: 'KR Brothers Office',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: location.office.addressLine1,
+                addressRegion: location.state,
+                addressCountry: location.countryCode,
+              },
+              geo: {
+                '@type': 'GeoCoordinates',
+                latitude: location.office.latitude,
+                longitude: location.office.longitude,
+              },
             },
             areaServed: operations.serviceRegions.slice(0, 6),
           },
