@@ -1,0 +1,106 @@
+import { useEffect } from 'react'
+
+/**
+ * Keeps a single set of document-level meta tags in sync with the current
+ * route. Tags are updated in place rather than appended, so navigating between
+ * pages never leaves two canonicals or two og:title elements in the document.
+ */
+
+function setMeta(keyAttr, key, content) {
+  if (content === undefined || content === null || content === '') return
+  let el = document.head.querySelector(`meta[${keyAttr}="${key}"]`)
+  if (!el) {
+    el = document.createElement('meta')
+    el.setAttribute(keyAttr, key)
+    document.head.appendChild(el)
+  }
+  el.setAttribute('content', content)
+}
+
+function setLink(rel, href) {
+  if (!href) return
+  let el = document.head.querySelector(`link[rel="${rel}"]`)
+  if (!el) {
+    el = document.createElement('link')
+    el.setAttribute('rel', rel)
+    document.head.appendChild(el)
+  }
+  el.setAttribute('href', href)
+}
+
+const SITE_ORIGIN = 'https://www.krbrothers.com'
+
+function absolute(url) {
+  if (!url) return undefined
+  return url.startsWith('http') ? url : `${SITE_ORIGIN}${url.startsWith('/') ? '' : '/'}${url}`
+}
+
+/**
+ * @param {object} meta
+ * @param {string} meta.title        document.title
+ * @param {string} meta.description  meta description + og/twitter description
+ * @param {string} [meta.keywords]   comma separated
+ * @param {string} [meta.canonical]  path or full URL, defaults to the current path
+ * @param {string} [meta.image]      og:image / twitter:image path
+ * @param {object} [meta.jsonLd]     structured data object for this page
+ * @param {boolean} [meta.robots]    robots meta content
+ */
+export function useDocumentMeta({
+  title,
+  description,
+  keywords,
+  canonical,
+  image,
+  jsonLd,
+  robots = 'index, follow',
+} = {}) {
+  const path =
+    typeof window === 'undefined'
+      ? '/'
+      : window.location.pathname.replace(/\/+$/, '') || '/'
+
+  useEffect(() => {
+    if (title) document.title = title
+    if (description) {
+      setMeta('name', 'description', description)
+      setMeta('name', 'twitter:title', title)
+      setMeta('name', 'twitter:description', description)
+      setMeta('property', 'og:title', title)
+      setMeta('property', 'og:description', description)
+    }
+    if (keywords) setMeta('name', 'keywords', keywords)
+    setMeta('name', 'robots', robots)
+
+    const url = absolute(canonical ?? path)
+    setLink('canonical', url)
+    setMeta('property', 'og:url', url)
+    setMeta('property', 'og:type', 'website')
+    setMeta('property', 'og:site_name', 'KR Brothers')
+
+    const img = absolute(image)
+    if (img) {
+      setMeta('property', 'og:image', img)
+      setMeta('name', 'twitter:image', img)
+      setMeta('property', 'og:image:alt', title)
+      setMeta('name', 'twitter:image:alt', title)
+    }
+
+    if (jsonLd) {
+      let el = document.getElementById('page-jsonld')
+      if (!el) {
+        el = document.createElement('script')
+        el.type = 'application/ld+json'
+        el.id = 'page-jsonld'
+        document.head.appendChild(el)
+      }
+      el.textContent = JSON.stringify(jsonLd)
+    } else {
+      // Pages without their own structured data must clear the previous route's
+      // block, otherwise a service page's Service/FAQ schema leaks onto the
+      // home page after client-side navigation.
+      document.getElementById('page-jsonld')?.remove()
+    }
+  }, [title, description, keywords, canonical, image, jsonLd, robots, path])
+}
+
+export default useDocumentMeta

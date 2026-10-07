@@ -1,0 +1,316 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --nav-navy: 15 23 42; /* #0F172A */
+    --amber: 245 158 11; /* #F59E0B */
+    color-scheme: light;
+  }
+
+  * {
+    @apply border-slate-200;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  /* Reveal variants start offset (translateX / scale > 1), which can briefly
+     widen the page. `clip` on the root contains that without creating a
+     scroll container, so the sticky header keeps working. */
+  html {
+    overflow-x: clip;
+  }
+
+  body {
+    @apply bg-white font-sans text-navy-700 antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    /* Headings use sentence case: all-caps is reserved for short labels, buttons and badges.
+       Long all-caps runs measurably slow reading, and every heading here exceeds that. */
+    @apply font-display font-bold tracking-tight text-navy-900;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-amber-safety ring-offset-2 ring-offset-white;
+  }
+
+  ::selection {
+    @apply bg-amber-safety text-navy-900;
+  }
+}
+
+@layer components {
+  .container-kr {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* ---- Buttons ---- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-bold uppercase tracking-wide
+      transition-all duration-200 select-none disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-primary {
+    @apply btn bg-amber-safety text-navy-900 shadow-glow
+      hover:bg-amber-light hover:shadow-[0_0_0_1px_rgba(245,158,11,0.5),0_16px_40px_-8px_rgba(245,158,11,0.55)]
+      active:translate-y-px;
+  }
+
+  .btn-dark {
+    @apply btn bg-navy-900 text-white hover:bg-navy-700 active:translate-y-px;
+  }
+
+  .btn-outline {
+    @apply btn border-2 border-navy-200 bg-white text-navy-900 hover:border-amber-safety hover:bg-amber-safety/10;
+  }
+
+  .btn-whatsapp {
+    @apply btn bg-amber-whatsapp text-white hover:bg-amber-whatsappHover active:translate-y-px;
+  }
+
+  /* Size modifiers. Size used to be hand-rolled at every call site
+     (sm:px-7 sm:py-3.5, !py-2.5 !text-xs, !px-4 !py-2 !text-xs), which made the
+     same intent render at three different sizes. Keeping it here also removes
+     the !important utilities that were needed to beat the base class. */
+  .btn-lg {
+    @apply px-5 py-3 text-sm sm:px-7 sm:py-3.5;
+  }
+
+  .btn-sm {
+    @apply px-5 py-2.5 text-xs;
+  }
+
+  /* ---- Inline action links ----
+     The "Quick Summary" / "Full details" family. This shape was previously
+     copy-pasted per call site with drifting colours, which is what produced
+     several near-identical button styles. */
+  .link-action {
+    @apply inline-flex min-h-[2.5rem] items-center gap-1.5 border-b-2 py-2 text-xs font-bold
+      uppercase tracking-wider transition-colors;
+  }
+
+  .link-action-primary {
+    @apply link-action border-amber-safety text-navy-900 hover:text-amber-deepText;
+  }
+
+  .link-action-quiet {
+    @apply link-action border-transparent text-navy-600 hover:border-navy-600 hover:text-navy-900;
+  }
+
+  /* ---- Icon buttons ----
+     Single source for every icon-only control: carousel arrows, lightbox nav,
+     drawer toggle, gallery badge close and back-to-top. Surface and radius are
+     the only real variants, so size stays a utility on top of the base. */
+  .icon-btn {
+    @apply grid h-11 w-11 shrink-0 place-items-center rounded-lg border transition-colors;
+  }
+
+  .icon-btn-onDark {
+    @apply icon-btn border-white/20 text-white hover:border-amber-safety hover:bg-amber-safety hover:text-navy-900;
+  }
+
+  .icon-btn-onMedia {
+    @apply icon-btn rounded-full border-white/25 bg-navy-950/70 text-white
+      hover:border-amber-safety hover:bg-amber-safety hover:text-navy-900;
+  }
+
+  .icon-btn-onLight {
+    @apply icon-btn rounded-full border-slate-300 bg-white text-navy-900 shadow-card
+      hover:border-navy-900 hover:bg-navy-900 hover:text-white;
+  }
+
+  /* ---- Surfaces ---- */
+  .card {
+    @apply rounded-2xl border border-slate-200 bg-white shadow-card transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:-translate-y-1 hover:border-amber-safety/50 hover:shadow-card-hover;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.2em] text-amber-deepText;
+  }
+
+  .section-title {
+    /* Arbitrary sizes at every breakpoint, on purpose. Tailwind's text-3xl /
+       4xl / 5xl each also emit their own `line-height`, and those rules land
+       after `leading-[1.1]` in the output, so the heading ended up with a
+       1.0 ratio at lg and 0.83 once the 5xl override was dropped. An
+       arbitrary value emits only `font-size`, leaving `leading-[1.1]` in
+       charge. Rendered sizes are unchanged: 30 / 36 / 48px. */
+    @apply text-[1.875rem] leading-[1.1] sm:text-[2.25rem] lg:text-[3rem];
+  }
+
+.chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-amber-safety/30 bg-amber-safety/10 px-3 py-1
+    font-mono text-xs font-bold uppercase tracking-wider text-amber-deepText;
+  }
+
+  /* Filter chips: visual state is derived from aria-pressed so the two can never desync. */
+  .chip-toggle {
+    @apply inline-flex shrink-0 items-center gap-2 rounded-lg border px-4 py-2.5 text-xs font-bold
+      tracking-wider transition-all;
+  }
+
+  .chip-toggle[aria-pressed='false'] {
+    @apply border-slate-300 bg-white text-navy-600 hover:border-amber-safety hover:text-amber-deepText;
+  }
+
+  .chip-toggle[aria-pressed='true'] {
+    @apply border-navy-900 bg-navy-900 text-white shadow-card;
+  }
+
+  /* Industrial diagonal hazard stripe divider */
+  .hazard-stripe {
+    @apply h-1.5 w-full bg-safety-stripe bg-stripe opacity-90;
+  }
+
+  .nav-link {
+    @apply relative rounded-md px-1 py-2 text-sm font-semibold text-navy-200 transition-colors
+      hover:text-amber-safety;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute inset-x-0 -bottom-0.5 h-0.5 origin-left scale-x-0 bg-amber-safety transition-transform duration-300;
+  }
+
+  .nav-link:hover::after,
+  .nav-link[aria-current='true']::after {
+    @apply scale-x-100;
+  }
+
+  /* Touch affordance: gives small inline links/buttons a comfortable hit area
+     on phones without changing their visual size. */
+  .tap-sm {
+    @apply inline-flex items-center py-2.5;
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-xs font-bold uppercase tracking-wider text-navy-600;
+  }
+
+  .field-input {
+    @apply w-full rounded-lg border-2 border-slate-200 bg-white px-4 py-3 text-sm text-navy-900
+      placeholder:text-slate-400 transition-colors focus:border-navy-900 focus:outline-none focus:ring-0;
+  }
+
+  .field-input-error {
+    @apply border-red-500 bg-red-50/40 focus:border-red-600;
+  }
+
+  .prose-kr p {
+    @apply text-[15px] leading-relaxed text-navy-600;
+  }
+
+  .link-amber {
+    @apply font-semibold text-amber-safety underline-offset-4 hover:text-amber-light hover:underline;
+  }
+}
+
+@layer utilities {
+  /* Scroll-reveal system.
+     Hidden until useReveal() adds `.is-visible`. The entrance style comes from
+     `data-variant` on the Reveal component so each section can have its own motion
+     instead of one generic fade everywhere. Variants only set the INITIAL state;
+     `.is-visible` resets them.
+
+     The hidden state is scoped to `.js` on <html>, set by the inline script in
+     index.html. Without it the page is blank when JavaScript is unavailable,
+     because nothing would ever add `.is-visible`. */
+  .js .reveal {
+    --reveal-duration: 0.65s;
+    --reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    opacity: 0;
+    transition:
+      opacity var(--reveal-duration) var(--reveal-ease),
+      transform var(--reveal-duration) var(--reveal-ease),
+      filter var(--reveal-duration) var(--reveal-ease);
+  }
+
+  /* Directional entrances */
+  .js .reveal[data-variant='fade-up'] { transform: translateY(26px); }
+  .js .reveal[data-variant='fade-down'] { transform: translateY(-22px); }
+  .js .reveal[data-variant='slide-left'] { transform: translateX(-44px); }
+  .js .reveal[data-variant='slide-right'] { transform: translateX(44px); }
+
+  /* Depth entrances */
+  .js .reveal[data-variant='scale-in'] { transform: scale(0.92); }
+  .js .reveal[data-variant='scale-up'] { transform: scale(0.9) translateY(26px); }
+  .js .reveal[data-variant='zoom-out'] { transform: scale(1.07); }
+  .js .reveal[data-variant='blur-in'] { transform: translateY(16px) scale(0.98); filter: blur(12px); }
+  .js .reveal[data-variant='lift'] { transform: translateY(38px) scale(0.96); }
+  .js .reveal[data-variant='swipe-up'] { transform: translateY(64px); }
+  .js .reveal[data-variant='tilt-in'] { transform: translateY(26px) rotate(-1.4deg); }
+
+  /* Opacity-only, for text that must not move */
+  .js .reveal[data-variant='fade'] { transform: none; }
+
+  /* Settled state.
+     MUST come after the variant rules above, and MUST carry the same `.js`
+     prefix they do. The variant selectors are `.js .reveal[data-variant=...]`,
+     which is three class-level selectors => specificity (0,3,0). A plain
+     `.reveal.is-visible` is only (0,2,0), so it lost on specificity no matter
+     where it sat in the file, and every revealed element stayed permanently
+     offset by its entrance transform (e.g. translateX(44px)) instead of
+     settling back to its true position. That offset is what pushed the About
+     copy out of its column and let it collide with neighbouring content.
+     Matching the prefix makes both (0,3,0), so source order decides again. */
+  .js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .text-balance {
+    text-wrap: balance
+  }
+
+  .vertical-text {
+    writing-mode: vertical-rl;
+  }
+
+  .mask-fade-r {
+    -webkit-mask-image: linear-gradient(to right, #000 82%, transparent 100%);
+    mask-image: linear-gradient(to right, #000 82%, transparent 100%);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
