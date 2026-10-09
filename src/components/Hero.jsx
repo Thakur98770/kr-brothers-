@@ -1,14 +1,31 @@
 import { ArrowRight, MapPin, MessageCircle, Phone, ShieldCheck } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import BUSINESS_CONFIG from '../config/businessConfig'
 import { SceneArt } from './SceneArt'
 import { getIcon } from '../lib/icons'
 
 function HeroBackgroundVideo() {
+  const [isMobile, setIsMobile] = useState(() =>
+    window.matchMedia('(max-width: 1024px)').matches,
+  )
+  const videoSrc = isMobile
+    ? '/assets/hero-background-mobile.mp4'
+    : '/assets/hero-background.mp4'
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 1024px)')
+    const updateVideoSource = (event) => setIsMobile(event.matches)
+    mediaQuery.addEventListener('change', updateVideoSource)
+    return () => mediaQuery.removeEventListener('change', updateVideoSource)
+  }, [])
+
   return (
     <video
-      src="/assets/hero-background.mp4"
+      key={videoSrc}
+      src={videoSrc}
       poster="/images/hero-main-photo.jpeg"
       className="absolute inset-0 h-full w-full object-cover"
+      style={{ objectPosition: isMobile ? '68% center' : 'center' }}
       autoPlay
       muted
       loop
@@ -38,8 +55,8 @@ export function Hero({ onRequestQuote }) {
           // decorative only — the hero has a text alternative via its heading
         />
         <HeroBackgroundVideo />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/45 via-navy-950/25 to-navy-950/10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-950/55 via-transparent to-navy-950/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/70 via-navy-950/45 to-navy-950/20 sm:from-navy-950/45 sm:via-navy-950/25 sm:to-navy-950/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-950/65 via-transparent to-navy-950/20 sm:from-navy-950/55 sm:to-navy-950/20" />
         <div
           className="absolute -right-24 -top-24 h-[26rem] w-[26rem] rounded-full bg-amber-safety/20 blur-3xl"
           aria-hidden="true"
