@@ -36,7 +36,7 @@ const SERVICE_PAGES = {
       },
       {
         question: 'Which areas do you deliver machines to?',
-        answer: 'We mobilise across Punjab and Himachal Pradesh, including Mukerian, Hajipur, Hoshiarpur and Pathankot. Sites outside these districts are quoted case by case based on mobilisation distance and machine class.',
+        answer: 'We mobilise across Punjab and Himachal Pradesh, including Hajipur, Dasuya, Talwara, Mukerian, Hoshiarpur and Pathankot. Sites outside these districts are quoted case by case based on mobilisation distance and machine class.',
       },
     ],
   },

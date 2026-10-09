@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.js";
 
 @layer base {
   :root {
@@ -80,21 +79,53 @@
   }
 
   .btn-primary {
-    @apply btn bg-amber-safety text-navy-900 shadow-glow
-      hover:bg-amber-light hover:shadow-[0_0_0_1px_rgba(245,158,11,0.5),0_16px_40px_-8px_rgba(245,158,11,0.55)]
-      active:translate-y-px;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-bold uppercase tracking-wide
+      transition-all duration-200 select-none disabled:cursor-not-allowed disabled:opacity-60 bg-amber-safety text-navy-900 shadow-glow;
+  }
+
+  .btn-primary:hover {
+    background-color: #fbbf24;
+    box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.5), 0 16px 40px -8px rgba(245, 158, 11, 0.55);
+  }
+
+  .btn-primary:active {
+    transform: translateY(1px);
   }
 
   .btn-dark {
-    @apply btn bg-navy-900 text-white hover:bg-navy-700 active:translate-y-px;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-bold uppercase tracking-wide
+      transition-all duration-200 select-none disabled:cursor-not-allowed disabled:opacity-60 bg-navy-900 text-white;
+  }
+
+  .btn-dark:hover {
+    background-color: #334155;
+  }
+
+  .btn-dark:active {
+    transform: translateY(1px);
   }
 
   .btn-outline {
-    @apply btn border-2 border-navy-200 bg-white text-navy-900 hover:border-amber-safety hover:bg-amber-safety/10;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-bold uppercase tracking-wide
+      transition-all duration-200 select-none disabled:cursor-not-allowed disabled:opacity-60 border-2 border-navy-200 bg-white text-navy-900;
+  }
+
+  .btn-outline:hover {
+    border-color: #f59e0b;
+    background-color: rgba(245, 158, 11, 0.1);
   }
 
   .btn-whatsapp {
-    @apply btn bg-amber-whatsapp text-white hover:bg-amber-whatsappHover active:translate-y-px;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-bold uppercase tracking-wide
+      transition-all duration-200 select-none disabled:cursor-not-allowed disabled:opacity-60 bg-amber-whatsapp text-white;
+  }
+
+  .btn-whatsapp:hover {
+    background-color: #0b5f2b;
+  }
+
+  .btn-whatsapp:active {
+    transform: translateY(1px);
   }
 
   /* Size modifiers. Size used to be hand-rolled at every call site
@@ -167,7 +198,8 @@
 
   /* Industrial diagonal hazard stripe divider */
   .hazard-stripe {
-    @apply h-1.5 w-full bg-safety-stripe bg-stripe opacity-90;
+    @apply h-1.5 w-full bg-safety-stripe opacity-90;
+    background-size: 28px 28px;
   }
 
   .nav-link {

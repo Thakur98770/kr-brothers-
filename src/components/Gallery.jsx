@@ -6,13 +6,16 @@ import Modal from './Modal'
 import Reveal from './Reveal'
 import SectionHeading from './SectionHeading'
 
-function GalleryMedia({ item, className }) {
+function GalleryMedia({ item, className, sizes }) {
   if (item.image) {
     return (
       <img
         src={item.image}
+        srcSet={item.imageSrcSet}
+        sizes={sizes}
         alt={item.title}
         loading="lazy"
+        decoding="async"
         className={`${className} object-cover`}
       />
     )
@@ -52,6 +55,7 @@ function GalleryLightbox({ items, index, isOpen, onClose, onPrev, onNext }) {
       <div className="relative">
         <GalleryMedia
           item={item}
+          sizes="(min-width: 1200px) 1152px, 100vw"
           className="aspect-[16/9] w-full sm:aspect-[2/1]"
         />
 
@@ -214,6 +218,7 @@ export function Gallery() {
               >
                 <GalleryMedia
                   item={item}
+                  sizes="(min-width: 1280px) 24.5rem, (min-width: 1024px) 30vw, (min-width: 640px) 50vw, calc(100vw - 2rem)"
                   className="aspect-[16/10] w-full transition-transform duration-500 group-hover:scale-105"
                 />
 

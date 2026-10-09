@@ -27,7 +27,8 @@ export const BUSINESS_CONFIG = {
   location: {
     addressLine1: 'Vill. Khizarpur (Hajipur), Teh. Mukerian',
     addressLine2: 'Distt. Hoshiarpur, Punjab, India',
-    addressShort: 'Vill. Khizarpur (Hajipur), Mukerian, Hoshiarpur, Punjab',
+    addressShort: 'Khizarpur (Hajipur), Dasuya, Talwara, Mukerian, Distt. Hoshiarpur, Punjab',
+    baseAreaLabel: 'Hajipur, Dasuya, Talwara, Mukerian, Distt. Hoshiarpur',
     city: 'Hajipur',
     district: 'Hoshiarpur',
     state: 'Punjab',
@@ -38,13 +39,13 @@ export const BUSINESS_CONFIG = {
     latitude: 32.0456,
     longitude: 75.6291,
     // Google Maps "embed" style query + a shareable maps link.
-    mapQuery: 'Mukerian, Hoshiarpur, Punjab, India',
+    mapQuery: 'Hajipur, Dasuya, Talwara, Mukerian, Hoshiarpur, Punjab, India',
     mapsEmbedSrc:
-      'https://www.google.com/maps?q=Mukerian%2C%20Hoshiarpur%2C%20Punjab%2C%20India&z=13&output=embed',
-    mapsLink: 'https://www.google.com/maps/search/?api=1&query=Mukerian%2C+Hoshiarpur%2C+Punjab%2C+India',
+      'https://www.google.com/maps?q=Hajipur%2C%20Dasuya%2C%20Talwara%2C%20Mukerian%2C%20Hoshiarpur%2C%20Punjab%2C%20India&z=13&output=embed',
+    mapsLink: 'https://www.google.com/maps/search/?api=1&query=Hajipur%2C+Dasuya%2C+Talwara%2C+Mukerian%2C+Hoshiarpur%2C+Punjab%2C+India',
     directionsLink:
-      'https://www.google.com/maps/dir/?api=1&destination=Mukerian%2C+Hoshiarpur%2C+Punjab%2C+India',
-    geoLabel: 'Khizarpur (Hajipur) — Distt. Hoshiarpur',
+      'https://www.google.com/maps/dir/?api=1&destination=Hajipur%2C+Dasuya%2C+Talwara%2C+Mukerian%2C+Hoshiarpur%2C+Punjab%2C+India',
+    geoLabel: 'Khizarpur (Hajipur), Dasuya, Talwara, Mukerian — Distt. Hoshiarpur',
     office: {
       addressLine1: 'Parelian',
       addressLine2: 'Punjab, India · Plus Code XP2G+343',
@@ -127,13 +128,14 @@ get whatsappService() {
     hours: '24 Hours — All 7 Days',
     hoursShort: 'Open 24x7',
     hoursIcon: 'Clock',
-    responseTime: 'Same-day mobilisation across Mukerian & Hoshiarpur',
+    responseTime: 'Same-day mobilisation across Hajipur, Dasuya, Talwara, Mukerian & Hoshiarpur',
     serviceRegions: [
-      'Mukerian',
       'Hajipur',
+      'Dasuya',
+      'Talwara',
+      'Mukerian',
       'Hoshiarpur',
       'Pathankot',
-      'Dasuya',
       'Garhshankar',
       'Mandi Adamgarh',
       'Shamirpur',
@@ -146,7 +148,7 @@ get whatsappService() {
       'Jammu & Kathua Corridor',
     ],
     primaryRegionLabel:
-      'Mukerian, Hajipur, Hoshiarpur, Pathankot and surrounding Punjab / Himachal industrial belts',
+      'Hajipur, Dasuya, Talwara, Mukerian, Hoshiarpur and surrounding Punjab / Himachal industrial belts',
   },
 
   // stats
@@ -575,7 +577,7 @@ get whatsappService() {
   // gallery
   /**
    * `art` is the default generated SVG illustration. If you have real project
-   * photos, add `image: '/gallery/your-file.jpg'` to any item and the gallery
+   * photos, add `image: '/assets/your-file.jpg'` to any item and the gallery
    * automatically swaps in the actual photo while keeping the same layout.
    */
   gallery: [
@@ -587,6 +589,9 @@ get whatsappService() {
       caption:
         'Long-reach hydraulic crane configured for pick-and-carry duty with counterweights and full cab controls.',
       location: 'Mukerian Industrial Belt',
+      image: '/assets/gallery-image-1.jpeg',
+      imageSrcSet:
+        '/assets/gallery-image-1-480.jpeg 480w, /assets/gallery-image-1-960.jpeg 960w, /assets/gallery-image-1-1600.jpeg 1600w',
       art: 'mobile-crane',
     },
     {
@@ -597,6 +602,9 @@ get whatsappService() {
       caption:
         'Telescopic Hydra boom raised to working height with stabilisers fully deployed and mats in place.',
       location: 'Hajipur, Hoshiarpur',
+      image: '/assets/gallery-image-2.jpg',
+      imageSrcSet:
+        '/assets/gallery-image-2-480.jpg 480w, /assets/gallery-image-2-960.jpg 960w, /assets/gallery-image-2-1600.jpg 1600w',
       art: 'hydra-crane',
     },
     {

@@ -38,7 +38,7 @@ export function ContactPage() {
   useDocumentMeta({
     title: `Contact KR Brothers — Crane Rental & Lifting Enquiries`,
     description:
-      'Call +91 78890 87547 or WhatsApp KR Brothers for crane rental and lifting enquiries. Open 24x7, based at Khizarpur (Hajipur), Hoshiarpur, Punjab.',
+      `Call +91 78890 87547 or WhatsApp KR Brothers for crane rental and lifting enquiries. Open 24x7, based in ${location.baseAreaLabel}, Punjab.`,
     keywords:
       'contact crane rental Punjab, crane hire enquiry Hoshiarpur, lifting contractor phone number, crane service contact Mukerian, emergency crane helpline Punjab',
     canonical: PATH,

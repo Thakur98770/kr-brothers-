@@ -58,7 +58,8 @@ export function WhyChooseUs() {
         <Reveal variant="blur-in" className="mt-12">
           <div className="relative overflow-hidden rounded-2xl bg-navy-900 px-6 py-10 text-center shadow-card sm:px-10">
             <div
-              className="pointer-events-none absolute inset-0 bg-safety-stripe bg-stripe opacity-[0.07]"
+              className="pointer-events-none absolute inset-0 bg-safety-stripe opacity-[0.07]"
+              style={{ backgroundSize: '28px 28px' }}
               aria-hidden="true"
             />
             <div className="relative mx-auto max-w-2xl">
@@ -82,7 +83,7 @@ export function WhyChooseUs() {
 
 function businessConfigLocation() {
   const { location } = BUSINESS_CONFIG
-  return `${location.city}, Distt. ${location.district}`
+  return location.baseAreaLabel
 }
 
 export default WhyChooseUs

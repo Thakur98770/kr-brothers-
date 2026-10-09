@@ -3,6 +3,23 @@ import BUSINESS_CONFIG from '../config/businessConfig'
 import { SceneArt } from './SceneArt'
 import { getIcon } from '../lib/icons'
 
+function HeroBackgroundVideo() {
+  return (
+    <video
+      src="/assets/hero-background.mp4"
+      poster="/images/hero-main-photo.jpeg"
+      className="absolute inset-0 h-full w-full object-cover"
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      aria-hidden="true"
+      tabIndex={-1}
+    />
+  )
+}
+
 export function Hero({ onRequestQuote }) {
   const { brand, contacts, location, links, operations } = BUSINESS_CONFIG
   const BadgeIcon = getIcon('BadgeCheck')
@@ -20,15 +37,16 @@ export function Hero({ onRequestQuote }) {
           className="h-full w-full opacity-45"
           // decorative only — the hero has a text alternative via its heading
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/92 to-navy-950/55" />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-navy-950/70" />
-        <div className="absolute inset-0 bg-steel-grid bg-grid opacity-[0.35]" />
+        <HeroBackgroundVideo />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/45 via-navy-950/25 to-navy-950/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-950/55 via-transparent to-navy-950/20" />
         <div
           className="absolute -right-24 -top-24 h-[26rem] w-[26rem] rounded-full bg-amber-safety/20 blur-3xl"
           aria-hidden="true"
         />
         <div
-          className="absolute inset-x-0 bottom-0 h-2 bg-safety-stripe bg-stripe opacity-70"
+          className="absolute inset-x-0 bottom-0 h-2 bg-safety-stripe opacity-70"
+          style={{ backgroundSize: '28px 28px' }}
           aria-hidden="true"
         />
       </div>
@@ -122,7 +140,7 @@ export function Hero({ onRequestQuote }) {
                 <dt className="text-xs font-bold uppercase tracking-wide text-white">
                   Local Base
                 </dt>
-                <dd className="mt-0.5 text-xs text-navy-300">Hajipur, Hoshiarpur</dd>
+                <dd className="mt-0.5 text-xs text-navy-300">{location.baseAreaLabel}</dd>
               </div>
             </div>
           </dl>
@@ -141,7 +159,7 @@ export function Hero({ onRequestQuote }) {
             {operations.primaryRegionLabel}
           </p>
           <ul className="mt-3 flex flex-wrap gap-1.5">
-            {['Mukerian', 'Hajipur', 'Hoshiarpur', 'Pathankot'].map((place) => (
+            {['Hajipur', 'Dasuya', 'Talwara', 'Mukerian', 'Hoshiarpur', 'Pathankot'].map((place) => (
               <li key={place} className="rounded-md bg-white/10 px-2 py-1 text-xs font-medium text-navy-100">
                 {place}
               </li>
