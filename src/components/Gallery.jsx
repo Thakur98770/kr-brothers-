@@ -126,9 +126,10 @@ export function Gallery() {
 
   const filteredItems = useMemo(
     () =>
-      activeFilter === 'all'
+      [...(activeFilter === 'all'
         ? gallery
-        : gallery.filter((item) => item.category === activeFilter),
+        : gallery.filter((item) => item.category === activeFilter))]
+        .sort((a, b) => Number(!a.image) - Number(!b.image)),
     [activeFilter, gallery],
   )
 
@@ -238,7 +239,7 @@ export function Gallery() {
                   <span className="inline-block rounded bg-amber-safety px-1.5 py-0.5 font-mono text-xs font-bold uppercase tracking-wider text-navy-900">
                     {item.categoryLabel}
                   </span>
-                  <span className="mt-1.5 block font-display text-sm font-bold uppercase leading-tight tracking-tight text-white sm:text-base">
+                  <span className="mt-1.5 block font-display text-sm font-bold leading-tight tracking-tight text-white sm:text-base">
                     {item.title}
                   </span>
                   <span className="mt-1 flex items-center gap-1 font-mono text-xs uppercase tracking-wider text-navy-300">

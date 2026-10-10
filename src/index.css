@@ -73,14 +73,17 @@
   }
 
   /* ---- Buttons ---- */
-  .btn {
+  .btn,
+  .btn-primary,
+  .btn-dark,
+  .btn-outline,
+  .btn-whatsapp {
     @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-bold uppercase tracking-wide
       transition-all duration-200 select-none disabled:cursor-not-allowed disabled:opacity-60;
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-bold uppercase tracking-wide
-      transition-all duration-200 select-none disabled:cursor-not-allowed disabled:opacity-60 bg-amber-safety text-navy-900 shadow-glow;
+    @apply bg-amber-safety text-navy-900 shadow-glow;
   }
 
   .btn-primary:hover {
@@ -93,8 +96,7 @@
   }
 
   .btn-dark {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-bold uppercase tracking-wide
-      transition-all duration-200 select-none disabled:cursor-not-allowed disabled:opacity-60 bg-navy-900 text-white;
+    @apply bg-navy-900 text-white;
   }
 
   .btn-dark:hover {
@@ -106,8 +108,7 @@
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-bold uppercase tracking-wide
-      transition-all duration-200 select-none disabled:cursor-not-allowed disabled:opacity-60 border-2 border-navy-200 bg-white text-navy-900;
+    @apply border-2 border-navy-200 bg-white text-navy-900;
   }
 
   .btn-outline:hover {
@@ -116,8 +117,7 @@
   }
 
   .btn-whatsapp {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-bold uppercase tracking-wide
-      transition-all duration-200 select-none disabled:cursor-not-allowed disabled:opacity-60 bg-amber-whatsapp text-white;
+    @apply bg-amber-whatsapp text-white;
   }
 
   .btn-whatsapp:hover {

@@ -1,5 +1,5 @@
 import { ArrowRight, MapPin, MessageCircle, Phone, ShieldCheck } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import BUSINESS_CONFIG from '../config/businessConfig'
 import { SceneArt } from './SceneArt'
 import { getIcon } from '../lib/icons'
@@ -8,9 +8,21 @@ function HeroBackgroundVideo() {
   const [isMobile, setIsMobile] = useState(() =>
     window.matchMedia('(max-width: 1024px)').matches,
   )
+  const videoRef = useRef(null)
   const videoSrc = isMobile
-    ? '/assets/hero-background-mobile.mp4'
-    : '/assets/hero-background.mp4'
+    ? '/assets/gallery/videos/hero-background-mobile.mp4'
+    : '/assets/gallery/videos/hero-background-desktop.mp4'
+
+  const resumePlayback = useCallback(() => {
+    const video = videoRef.current
+    if (!video || document.visibilityState !== 'visible') return
+
+    video.play().catch((error) => {
+      if (error.name !== 'AbortError') {
+        console.error('Hero background video playback failed.', error)
+      }
+    })
+  }, [])
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 1024px)')
@@ -19,18 +31,41 @@ function HeroBackgroundVideo() {
     return () => mediaQuery.removeEventListener('change', updateVideoSource)
   }, [])
 
+  useEffect(() => {
+    const resumeWhenVisible = () => {
+      if (document.visibilityState === 'visible') resumePlayback()
+    }
+    document.addEventListener('visibilitychange', resumeWhenVisible)
+    window.addEventListener('focus', resumePlayback)
+    resumePlayback()
+
+    return () => {
+      document.removeEventListener('visibilitychange', resumeWhenVisible)
+      window.removeEventListener('focus', resumePlayback)
+    }
+  }, [resumePlayback, videoSrc])
+
   return (
     <video
+      ref={videoRef}
       key={videoSrc}
       src={videoSrc}
-      poster="/images/hero-main-photo.jpeg"
+      poster="/assets/gallery/imgs/hero-video-poster.jpg"
       className="absolute inset-0 h-full w-full object-cover"
       style={{ objectPosition: isMobile ? '68% center' : 'center' }}
       autoPlay
       muted
       loop
       playsInline
-      preload="metadata"
+      preload="auto"
+      onPause={(event) => {
+        if (!event.currentTarget.ended) resumePlayback()
+      }}
+      onError={() =>
+        console.error(
+          `Hero background video could not be loaded: ${videoSrc}`,
+        )
+      }
       aria-hidden="true"
       tabIndex={-1}
     />
@@ -49,11 +84,6 @@ export function Hero({ onRequestQuote }) {
     >
       {/* Background artwork + overlays */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <SceneArt
-          art="mobile-crane"
-          className="h-full w-full opacity-45"
-          // decorative only — the hero has a text alternative via its heading
-        />
         <HeroBackgroundVideo />
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950/70 via-navy-950/45 to-navy-950/20 sm:from-navy-950/45 sm:via-navy-950/25 sm:to-navy-950/10" />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-950/65 via-transparent to-navy-950/20 sm:from-navy-950/55 sm:to-navy-950/20" />

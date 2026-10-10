@@ -49,7 +49,7 @@ export function useDocumentMeta({
   description,
   keywords,
   canonical,
-  image = '/og-image.png',
+  image = '/assets/gallery/imgs/og-image.png',
   jsonLd,
   robots = 'index, follow',
 } = {}) {

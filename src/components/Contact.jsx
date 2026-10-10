@@ -697,7 +697,7 @@ export function Contact({ preselectService, onPreselectHandled }) {
                 href={location.office.mapsLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-outline btn-sm"
+                className="btn-outline btn-sm normal-case"
               >
                 <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
                 Open in Google Maps

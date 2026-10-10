@@ -41,7 +41,7 @@ export function WhyChooseUs() {
                   </h3>
 
                   {item.tagline && (
-                    <p className="relative mt-2 inline-flex self-start rounded-md bg-amber-safety/15 px-2 py-1 font-mono text-xs font-bold uppercase tracking-wider text-amber-deepText">
+                    <p className="relative mt-2 inline-flex self-start rounded-md bg-amber-safety/15 px-2 py-1 font-mono text-xs font-bold text-amber-deepText">
                       “{item.tagline}”
                     </p>
                   )}

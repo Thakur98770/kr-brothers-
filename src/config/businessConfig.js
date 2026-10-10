@@ -576,9 +576,8 @@ get whatsappService() {
 
   // gallery
   /**
-   * `art` is the default generated SVG illustration. If you have real project
-   * photos, add `image: '/assets/your-file.jpg'` to any item and the gallery
-   * automatically swaps in the actual photo while keeping the same layout.
+   * Each gallery card uses a real project photo. The `art` field is only a
+   * fallback for entries that do not have an image.
    */
   gallery: [
     {
@@ -589,9 +588,7 @@ get whatsappService() {
       caption:
         'Long-reach hydraulic crane configured for pick-and-carry duty with counterweights and full cab controls.',
       location: 'Mukerian Industrial Belt',
-      image: '/assets/gallery-image-1.jpeg',
-      imageSrcSet:
-        '/assets/gallery-image-1-480.jpeg 480w, /assets/gallery-image-1-960.jpeg 960w, /assets/gallery-image-1-1600.jpeg 1600w',
+      image: '/assets/gallery/imgs/gallery-image-1.jpeg',
       art: 'mobile-crane',
     },
     {
@@ -602,139 +599,146 @@ get whatsappService() {
       caption:
         'Telescopic Hydra boom raised to working height with stabilisers fully deployed and mats in place.',
       location: 'Hajipur, Hoshiarpur',
-      image: '/assets/gallery-image-2.jpg',
-      imageSrcSet:
-        '/assets/gallery-image-2-480.jpg 480w, /assets/gallery-image-2-960.jpg 960w, /assets/gallery-image-2-1600.jpg 1600w',
+      image: '/assets/gallery/imgs/gallery-image-2.jpg',
       art: 'hydra-crane',
     },
     {
-      id: 'g3',
+      id: 'g15',
       category: 'cranes',
       categoryLabel: 'Cranes',
-      title: 'Truck-Mounted Crane Fleet',
+      title: 'ACE Crane Lifting Concrete Slabs',
       caption:
-        'Truck-mounted fleet on standby for rapid mobilisation across the Hoshiarpur and Pathankot corridor.',
-      location: 'Hoshiarpur',
-      art: 'truck-crane',
+        'ACE crane lifting concrete slabs at a construction site.',
+      location: 'Construction Site',
+      image: '/assets/gallery/imgs/img3.jpg',
+      art: 'mobile-crane',
     },
     {
-      id: 'g4',
+      id: 'g16',
       category: 'cranes',
       categoryLabel: 'Cranes',
-      title: 'Night-Shift Breakdown Response',
+      title: 'ACE Crane Lifting Concrete Slab at Sunrise',
       caption:
-        'Emergency crane mobilisation with LED flood lighting for night and festival-shift breakdown call-outs.',
-      location: 'NH-44 Corridor',
-      art: 'night-crane',
+        'ACE crane handling a concrete slab during a sunrise construction shift.',
+      location: 'Construction Site',
+      image: '/assets/gallery/imgs/img4.jpg',
+      art: 'mobile-crane',
     },
     {
-      id: 'g5',
-      category: 'material-handling',
-      categoryLabel: 'Material Handling',
-      title: 'Industrial Yard Stacking',
+      id: 'g17',
+      category: 'cranes',
+      categoryLabel: 'Cranes',
+      title: 'Orange ACE Crane in Industrial Yard',
       caption:
-        'Bundled steel sections stacked and re-stacked by Hydra crane in a congested industrial yard.',
-      location: 'Steel Yard, Mukerian',
-      art: 'yard-stacking',
+        'Orange ACE crane positioned for lifting work in an industrial yard.',
+      location: 'Industrial Yard',
+      image: '/assets/gallery/imgs/img5.jpg',
+      art: 'mobile-crane',
     },
     {
-      id: 'g6',
-      category: 'material-handling',
-      categoryLabel: 'Material Handling',
-      title: 'Truck Loading & Unloading',
-      caption:
-        'Heavy components loaded onto low-bed trailers with tag-line control and banksman supervision.',
-      location: 'Pathankot',
-      art: 'truck-loading',
+      id: 'g18',
+      category: 'cranes',
+      categoryLabel: 'Cranes',
+      title: 'ACE Crane at Work',
+      caption: 'ACE crane ready for lifting work at an active site.',
+      location: 'Construction Site',
+      image: '/assets/gallery/imgs/img6.jpg',
+      art: 'mobile-crane',
     },
     {
-      id: 'g7',
-      category: 'material-handling',
-      categoryLabel: 'Material Handling',
-      title: 'Machine-to-Machine Shifting',
-      caption:
-        'CNC machine shifted shop-to-shop inside a live plant during a planned shut-down window.',
-      location: 'Manufacturing Unit',
-      art: 'machine-shifting',
-    },
-    {
-      id: 'g8',
-      category: 'material-handling',
-      categoryLabel: 'Material Handling',
-      title: 'Transformer Yard Placement',
-      caption:
-        'Power transformer unloaded and set on its foundation plinth with rigging gear and slinger in control.',
-      location: 'Substation Site',
-      art: 'transformer',
-    },
-    {
-      id: 'g9',
+      id: 'g19',
       category: 'construction-sites',
       categoryLabel: 'Construction Sites',
-      title: 'Steel Column & Girder Erection',
+      title: 'ACE Crane at Construction Site',
       caption:
-        'Structural steel columns and roof girders set to line and level during shed erection.',
-      location: 'Industrial Shed',
-      art: 'steel-erection',
+        'ACE crane positioned beside an active construction project.',
+      location: 'Construction Site',
+      image: '/assets/gallery/imgs/img7.jpg',
+      art: 'mobile-crane',
     },
     {
-      id: 'g10',
+      id: 'g20',
+      category: 'cranes',
+      categoryLabel: 'Cranes',
+      title: 'ACE Crane Fleet at Work',
+      caption:
+        'ACE crane fleet preparing for lifting work at an industrial site.',
+      location: 'Industrial Site',
+      image: '/assets/gallery/imgs/img8.jpg',
+      art: 'mobile-crane',
+    },
+    {
+      id: 'g21',
+      category: 'cranes',
+      categoryLabel: 'Cranes',
+      title: 'ACE 16XW Crane — KR Brothers',
+      caption:
+        'KR Brothers ACE 16XW crane prepared for on-site lifting operations.',
+      location: 'KR Brothers Site',
+      image: '/assets/gallery/imgs/img9.jpg',
+      art: 'mobile-crane',
+    },
+    {
+      id: 'g22',
       category: 'construction-sites',
       categoryLabel: 'Construction Sites',
-      title: 'Precast Slab & Stair Placement',
+      title: 'Crane at Building Site',
       caption:
-        'Precast stair and slab units positioned on a G+ residential structure with tag lines on every lift.',
-      location: 'G+ Residential Project',
-      art: 'precast',
+        'KR Brothers crane alongside a multi-storey building during site work.',
+      location: 'Construction Site',
+      image: '/assets/gallery/imgs/img10.jpg',
+      art: 'mobile-crane',
     },
     {
-      id: 'g11',
+      id: 'g23',
       category: 'construction-sites',
       categoryLabel: 'Construction Sites',
-      title: 'High-Rise Slab & Rebar Handling',
+      title: 'Crane Lifting Work at Building',
       caption:
-        'Continuous deck-cycle support for rebar, shuttering and slab cycles on a multi-storey building.',
-      location: 'Mukerian',
-      art: 'highrise',
+        'On-site crane lifting work carried out beside a multi-storey building.',
+      location: 'Construction Site',
+      image: '/assets/gallery/imgs/img11.jpg',
+      art: 'mobile-crane',
     },
     {
-      id: 'g12',
-      category: 'industrial-jobs',
-      categoryLabel: 'Industrial Jobs',
-      title: 'Plant Equipment Commissioning Lift',
+      id: 'g24',
+      category: 'construction-sites',
+      categoryLabel: 'Construction Sites',
+      title: 'Crane Operations at Construction Site',
       caption:
-        'Heavy production equipment lifted into position for commissioning inside a plant under full shutdown.',
-      location: 'Industrial Plant',
-      art: 'plant-equipment',
+        'KR Brothers crane supporting lifting work at an active construction site.',
+      location: 'Construction Site',
+      image: '/assets/gallery/imgs/img12.jpg',
+      art: 'mobile-crane',
     },
     {
-      id: 'g13',
-      category: 'industrial-jobs',
-      categoryLabel: 'Industrial Jobs',
-      title: 'Bridge Girder Handling',
+      id: 'g25',
+      category: 'construction-sites',
+      categoryLabel: 'Construction Sites',
+      title: 'Crane Team on Site',
       caption:
-        'Pre-cast girders lifted and set on piers as part of a highway bridge launching operation.',
-      location: 'Bridge Project, Hoshiarpur',
-      art: 'bridge-girder',
+        'Crane operators and site staff coordinating an on-site lift.',
+      location: 'Construction Site',
+      image: '/assets/gallery/imgs/img13.jpg',
+      art: 'mobile-crane',
     },
     {
-      id: 'g14',
-      category: 'industrial-jobs',
-      categoryLabel: 'Industrial Jobs',
-      title: 'Oversized Cargo Transport Prep',
+      id: 'g26',
+      category: 'cranes',
+      categoryLabel: 'Cranes',
+      title: 'ACE Crane on Site',
       caption:
-        'Oversized machinery prepared and escorted, with crane support at both loading and unloading points.',
-      location: 'Mukerian to Pathankot',
-      art: 'oversize-cargo',
+        'ACE crane positioned for lifting operations at a construction site.',
+      location: 'Construction Site',
+      image: '/assets/gallery/imgs/img14.jpg',
+      art: 'mobile-crane',
     },
   ],
 
   galleryFilters: [
     { id: 'all', label: 'All' },
     { id: 'cranes', label: 'Cranes' },
-    { id: 'material-handling', label: 'Material Handling' },
     { id: 'construction-sites', label: 'Construction Sites' },
-    { id: 'industrial-jobs', label: 'Industrial Jobs' },
   ],
 
   // testimonials
