@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import {
   AlertCircle,
   ArrowRight,
-  CheckCircle2,
   Clock,
   Mail,
   MapPin,
@@ -42,9 +41,10 @@ function validate(values) {
     errors.name = 'Name must be at least 3 characters.'
   }
 
-  if (!values.phone.trim()) {
+  const phone = values.phone.trim()
+  if (!phone) {
     errors.phone = 'Please enter a contact number.'
-  } else if (!PHONE_RE.test(values.phone.trim())) {
+  } else if (!PHONE_RE.test(phone) || phone.replace(/\D/g, '').length < 10) {
     errors.phone = 'Enter a valid phone number (10 digits or more).'
   }
 
@@ -109,15 +109,10 @@ export function Contact({ preselectService, onPreselectHandled }) {
   const [values, setValues] = useState(EMPTY)
   const [errors, setErrors] = useState({})
   const [touched, setTouched] = useState({})
-  const [status, setStatus] = useState('idle') // idle | submitting | success
+  const [status, setStatus] = useState('idle') // idle | ready
   const [summary, setSummary] = useState(null)
   const formRef = useRef(null)
   const successRef = useRef(null)
-  const timersRef = useRef([])
-
-  useEffect(() => () => {
-    timersRef.current.forEach((timer) => clearTimeout(timer))
-  }, [])
 
   // Pre-select the service coming from the services modal.
   useEffect(() => {
@@ -127,6 +122,10 @@ export function Contact({ preselectService, onPreselectHandled }) {
     setTimeout(() => formRef.current?.querySelector('[name="service"]')?.focus(), 80)
     onPreselectHandled?.()
   }, [preselectService, onPreselectHandled])
+
+  useEffect(() => {
+    if (status === 'ready') successRef.current?.focus()
+  }, [status])
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -159,8 +158,6 @@ export function Contact({ preselectService, onPreselectHandled }) {
       return
     }
 
-    setStatus('submitting')
-
     const serviceLabel =
       services.find((s) => s.id === values.service)?.title ?? values.service
 
@@ -174,7 +171,6 @@ export function Contact({ preselectService, onPreselectHandled }) {
       message: values.message.trim(),
     }
 
-    const whatsappHref = buildWhatsAppHref(payload)
     const emailSubject = encodeURIComponent(`KR Brothers enquiry — ${payload.service}`)
     const emailBody = encodeURIComponent(
       [
@@ -193,21 +189,12 @@ export function Contact({ preselectService, onPreselectHandled }) {
     )
     const mailtoHref = `mailto:${contacts.email}?subject=${emailSubject}&body=${emailBody}`
 
-    const openFallback = () => {
-      setSummary({
-        name: payload.name,
-        service: payload.service,
-        location: payload.location,
-        phone: payload.phone,
-      })
-      setStatus('success')
-      const timeoutId = window.setTimeout(() => successRef.current?.focus(), 60)
-      timersRef.current.push(timeoutId)
-    }
-
-    window.open(whatsappHref, '_blank', 'noopener,noreferrer')
-    window.location.href = mailtoHref
-    openFallback()
+    setSummary({
+      service: payload.service,
+      location: payload.location,
+      mailtoHref,
+    })
+    setStatus('ready')
   }
 
   const resetForm = () => {
@@ -411,23 +398,21 @@ export function Contact({ preselectService, onPreselectHandled }) {
           </Reveal>
           <Reveal variant="slide-left" delay={100} className="h-full">
             <div className="relative h-full rounded-2xl border border-slate-200 bg-white p-6 shadow-card sm:p-8">
-              {status === 'success' ? (
+              {status === 'ready' ? (
                 <div className="flex min-h-[26rem] flex-col items-center justify-center text-center animate-scale-in">
                   <span className="grid h-20 w-20 place-items-center rounded-full bg-emerald-100 text-emerald-600">
-                    <CheckCircle2 className="h-11 w-11" aria-hidden="true" />
+                    <Send className="h-10 w-10" aria-hidden="true" />
                   </span>
                   <h3
                     ref={successRef}
                     tabIndex={-1}
                     className="mt-6 font-display text-2xl font-bold tracking-tight text-navy-900 outline-none"
                   >
-                    Enquiry Received
+                    Enquiry Ready to Send
                   </h3>
                   <p className="mt-2 max-w-md text-sm leading-relaxed text-navy-600">
-                    Thank you, {summary?.name}. Our team will call you on{' '}
-                    <span className="font-semibold text-navy-900">{summary?.phone}</span>{' '}
-                    shortly to confirm machine availability and rates for{' '}
-                    <span className="font-semibold text-navy-900">{summary?.service}</span>.
+                    Your message has not been sent. Choose WhatsApp or email below, then review
+                    the prepared message and press Send in that app.
                   </p>
 
                   <dl className="mt-6 w-full max-w-md space-y-2 rounded-xl border border-slate-200 bg-slate-50 p-5 text-left">
@@ -457,11 +442,11 @@ export function Contact({ preselectService, onPreselectHandled }) {
                       className="btn-whatsapp flex-1"
                     >
                       <MessageCircle className="h-4 w-4" aria-hidden="true" />
-                      Continue on WhatsApp
+                      Open WhatsApp
                     </a>
-                    <a href={contacts.primaryPhoneLink} className="btn-dark flex-1">
-                      <Phone className="h-4 w-4" aria-hidden="true" />
-                      Call Now
+                    <a href={summary?.mailtoHref} className="btn-outline flex-1">
+                      <Mail className="h-4 w-4" aria-hidden="true" />
+                      Open Email Draft
                     </a>
                   </div>
 
@@ -503,6 +488,7 @@ export function Contact({ preselectService, onPreselectHandled }) {
                         id="krb-name"
                         name="name"
                         type="text"
+                        required
                         autoComplete="name"
                         placeholder="e.g. Rakesh Kumar"
                         value={values.name}
@@ -516,6 +502,7 @@ export function Contact({ preselectService, onPreselectHandled }) {
                         id="krb-phone"
                         name="phone"
                         type="tel"
+                        required
                         inputMode="tel"
                         autoComplete="tel"
                         placeholder="e.g. 98765 43210"
@@ -530,6 +517,7 @@ export function Contact({ preselectService, onPreselectHandled }) {
                         id="krb-email"
                         name="email"
                         type="email"
+                        required
                         autoComplete="email"
                         placeholder="you@company.com"
                         value={values.email}
@@ -546,6 +534,7 @@ export function Contact({ preselectService, onPreselectHandled }) {
                         <select
                           id="krb-service"
                           name="service"
+                          required
                           value={values.service}
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -575,6 +564,7 @@ export function Contact({ preselectService, onPreselectHandled }) {
                         id="krb-location"
                         name="location"
                         type="text"
+                        required
                         autoComplete="address-level2"
                         placeholder="e.g. Site near Mukerian, Hoshiarpur"
                         value={values.location}
@@ -602,6 +592,7 @@ export function Contact({ preselectService, onPreselectHandled }) {
                           id="krb-message"
                           name="message"
                           rows={5}
+                          required
                           placeholder="e.g. Need a 25-tonne Hydra for one day to unload 8 T steel sections at our yard. Approx. 20 lifts, ground is compacted hardstand."
                           value={values.message}
                           onChange={handleChange}
@@ -636,23 +627,10 @@ export function Contact({ preselectService, onPreselectHandled }) {
                     <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
                       <button
                         type="submit"
-                        disabled={status === 'submitting'}
                         className="btn-primary flex-1"
                       >
-                        {status === 'submitting' ? (
-                          <>
-                            <span
-                              className="h-4 w-4 animate-spin rounded-full border-2 border-navy-900 border-t-transparent"
-                              aria-hidden="true"
-                            />
-                            Sending…
-                          </>
-                        ) : (
-                          <>
-                            <Send className="h-4 w-4" aria-hidden="true" />
-                            Submit Enquiry
-                          </>
-                        )}
+                        <Send className="h-4 w-4" aria-hidden="true" />
+                        Submit Enquiry
                       </button>
 
                       <a

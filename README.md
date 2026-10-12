@@ -21,8 +21,32 @@ npm run dev -- --host 0.0.0.0
 ## Production build
 
 ```bash
+npx playwright install chromium
 npm run build
 ```
+
+The production output is written to `dist/`. The build keeps the original
+source media intact and excludes verified superseded copies only from `dist/`.
+Upload the **contents** of `dist/` (including `.htaccess`) into Hostinger's
+`public_html` directory.
+
+### Hostinger domain checklist
+
+- Configure the apex and `www` DNS records using the exact targets shown in
+  Hostinger's domain dashboard; do not substitute guessed IP addresses or
+  CNAME targets.
+- Keep `www.krbrothers.com` as the canonical host. Configure an apex-to-`www`
+  redirect in Hostinger after both hostnames resolve to the hosting account.
+- Preserve existing MX records and email-related TXT records when changing
+  DNS. Only update website records that Hostinger identifies as required.
+- Enable the domain's SSL certificate in Hostinger after DNS is pointing to the
+  account, verify both hostnames over HTTPS, then enable/verify HTTPS
+  redirection.
+- The included `.htaccess` selects `index.html` and routes missing files to the
+  prerendered `404.html`. Check route refreshes and the branded 404 response
+  after upload.
+- No production upload, DNS change, live SSL check, or email-delivery test is
+  performed by the local build.
 
 ## Project stack
 

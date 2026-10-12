@@ -9,7 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "postbuild": "node scripts/prerender.mjs"
+    "postbuild": "node scripts/prepare-dist.mjs && node scripts/prerender.mjs"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.3",

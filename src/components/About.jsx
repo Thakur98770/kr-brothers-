@@ -58,8 +58,10 @@ export function About() {
             <figure className="relative">
               <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-card">
                 <img
-                  src="/assets/gallery/imgs/hero-main-photo.jpeg"
-                  alt="KR Brothers crane at work"
+                  src="/assets/gallery/optimized/about-crane-operator.webp"
+                  alt="Person standing beside an orange crane"
+                  width={1600}
+                  height={1200}
                   className="aspect-[4/3] w-full object-cover"
                   loading="lazy"
                   decoding="async"

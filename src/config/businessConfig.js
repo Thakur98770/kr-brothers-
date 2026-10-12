@@ -588,7 +588,7 @@ get whatsappService() {
       caption:
         'Long-reach hydraulic crane configured for pick-and-carry duty with counterweights and full cab controls.',
       location: 'Mukerian Industrial Belt',
-      image: '/assets/gallery/imgs/gallery-image-1.jpeg',
+      image: '/assets/gallery/optimized/gallery-image-1.webp',
       art: 'mobile-crane',
     },
     {
@@ -599,7 +599,7 @@ get whatsappService() {
       caption:
         'Telescopic Hydra boom raised to working height with stabilisers fully deployed and mats in place.',
       location: 'Hajipur, Hoshiarpur',
-      image: '/assets/gallery/imgs/gallery-image-2.jpg',
+      image: '/assets/gallery/optimized/gallery-image-2.webp',
       art: 'hydra-crane',
     },
     {
@@ -610,7 +610,7 @@ get whatsappService() {
       caption:
         'ACE crane lifting concrete slabs at a construction site.',
       location: 'Construction Site',
-      image: '/assets/gallery/imgs/img3.jpg',
+      image: '/assets/gallery/optimized/img3.webp',
       art: 'mobile-crane',
     },
     {
@@ -621,7 +621,7 @@ get whatsappService() {
       caption:
         'ACE crane handling a concrete slab during a sunrise construction shift.',
       location: 'Construction Site',
-      image: '/assets/gallery/imgs/img4.jpg',
+      image: '/assets/gallery/optimized/img4.webp',
       art: 'mobile-crane',
     },
     {
@@ -632,7 +632,7 @@ get whatsappService() {
       caption:
         'Orange ACE crane positioned for lifting work in an industrial yard.',
       location: 'Industrial Yard',
-      image: '/assets/gallery/imgs/img5.jpg',
+      image: '/assets/gallery/optimized/img5.webp',
       art: 'mobile-crane',
     },
     {
@@ -642,7 +642,7 @@ get whatsappService() {
       title: 'ACE Crane at Work',
       caption: 'ACE crane ready for lifting work at an active site.',
       location: 'Construction Site',
-      image: '/assets/gallery/imgs/img6.jpg',
+      image: '/assets/gallery/optimized/img6.webp',
       art: 'mobile-crane',
     },
     {
@@ -653,7 +653,7 @@ get whatsappService() {
       caption:
         'ACE crane positioned beside an active construction project.',
       location: 'Construction Site',
-      image: '/assets/gallery/imgs/img7.jpg',
+      image: '/assets/gallery/optimized/img7.webp',
       art: 'mobile-crane',
     },
     {
@@ -664,7 +664,7 @@ get whatsappService() {
       caption:
         'ACE crane fleet preparing for lifting work at an industrial site.',
       location: 'Industrial Site',
-      image: '/assets/gallery/imgs/img8.jpg',
+      image: '/assets/gallery/optimized/img8.webp',
       art: 'mobile-crane',
     },
     {
@@ -675,7 +675,7 @@ get whatsappService() {
       caption:
         'KR Brothers ACE 16XW crane prepared for on-site lifting operations.',
       location: 'KR Brothers Site',
-      image: '/assets/gallery/imgs/img9.jpg',
+      image: '/assets/gallery/optimized/img9.webp',
       art: 'mobile-crane',
     },
     {
@@ -686,7 +686,7 @@ get whatsappService() {
       caption:
         'KR Brothers crane alongside a multi-storey building during site work.',
       location: 'Construction Site',
-      image: '/assets/gallery/imgs/img10.jpg',
+      image: '/assets/gallery/optimized/img10.webp',
       art: 'mobile-crane',
     },
     {
@@ -697,7 +697,7 @@ get whatsappService() {
       caption:
         'On-site crane lifting work carried out beside a multi-storey building.',
       location: 'Construction Site',
-      image: '/assets/gallery/imgs/img11.jpg',
+      image: '/assets/gallery/optimized/img11.webp',
       art: 'mobile-crane',
     },
     {
@@ -708,7 +708,7 @@ get whatsappService() {
       caption:
         'KR Brothers crane supporting lifting work at an active construction site.',
       location: 'Construction Site',
-      image: '/assets/gallery/imgs/img12.jpg',
+      image: '/assets/gallery/optimized/img12.webp',
       art: 'mobile-crane',
     },
     {
@@ -719,7 +719,7 @@ get whatsappService() {
       caption:
         'Crane operators and site staff coordinating an on-site lift.',
       location: 'Construction Site',
-      image: '/assets/gallery/imgs/img13.jpg',
+      image: '/assets/gallery/optimized/img13.webp',
       art: 'mobile-crane',
     },
     {
@@ -730,7 +730,7 @@ get whatsappService() {
       caption:
         'ACE crane positioned for lifting operations at a construction site.',
       location: 'Construction Site',
-      image: '/assets/gallery/imgs/img14.jpg',
+      image: '/assets/gallery/optimized/img14.webp',
       art: 'mobile-crane',
     },
   ],

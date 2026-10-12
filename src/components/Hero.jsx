@@ -8,10 +8,13 @@ function HeroBackgroundVideo() {
   const [isMobile, setIsMobile] = useState(() =>
     window.matchMedia('(max-width: 1024px)').matches,
   )
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() =>
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  )
   const videoRef = useRef(null)
   const videoSrc = isMobile
-    ? '/assets/gallery/videos/hero-background-mobile.mp4'
-    : '/assets/gallery/videos/hero-background-desktop.mp4'
+    ? '/assets/gallery/optimized/hero-background-mobile-optimized.mp4'
+    : '/assets/gallery/optimized/hero-background-laptop-optimized.mp4'
 
   const resumePlayback = useCallback(() => {
     const video = videoRef.current
@@ -32,6 +35,15 @@ function HeroBackgroundVideo() {
   }, [])
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const updateMotionPreference = (event) => setPrefersReducedMotion(event.matches)
+    mediaQuery.addEventListener('change', updateMotionPreference)
+    return () => mediaQuery.removeEventListener('change', updateMotionPreference)
+  }, [])
+
+  useEffect(() => {
+    if (prefersReducedMotion) return undefined
+
     const resumeWhenVisible = () => {
       if (document.visibilityState === 'visible') resumePlayback()
     }
@@ -43,7 +55,19 @@ function HeroBackgroundVideo() {
       document.removeEventListener('visibilitychange', resumeWhenVisible)
       window.removeEventListener('focus', resumePlayback)
     }
-  }, [resumePlayback, videoSrc])
+  }, [prefersReducedMotion, resumePlayback, videoSrc])
+
+  if (prefersReducedMotion) {
+    return (
+      <img
+        src="/assets/gallery/imgs/hero-video-poster.jpg"
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{ objectPosition: isMobile ? '68% center' : 'center' }}
+        alt=""
+        aria-hidden="true"
+      />
+    )
+  }
 
   return (
     <video
@@ -57,7 +81,7 @@ function HeroBackgroundVideo() {
       muted
       loop
       playsInline
-      preload="auto"
+      preload="metadata"
       onPause={(event) => {
         if (!event.currentTarget.ended) resumePlayback()
       }}
