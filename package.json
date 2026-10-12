@@ -6,7 +6,7 @@
   "description": "KR Brothers — crane rental, lifting, material handling & construction support. Mukerian, Hoshiarpur, Punjab.",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && npx playwright install chromium",
     "preview": "vite preview",
     "lint": "eslint .",
     "postbuild": "node scripts/prepare-dist.mjs && node scripts/prerender.mjs"
